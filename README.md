@@ -28,8 +28,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Solution URL](https://www.frontendmentor.io/solutions/calculator-app-using-vanilla-js-tqXLaeRnVR)
+- Live Site URL: [Live site URL](https://ayoubrabiae.github.io/calculator/)
 
 ## My process
 
