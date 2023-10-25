@@ -1,0 +1,212 @@
+/* Global Styling */
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&display=swap');
+
+:root {
+    --color-main-background: #3a4764;
+    --color-keypad-background: #232c43;
+    --color-screen-background: #182034;
+    --color-key-blue-background: #637097;
+    --color-key-blue-shadow: #404e72;
+    --color-key-blue-hover: #a2b3e1;
+    --color-key-red-background: #d03f2f;
+    --color-key-red-shadow: #93261a;
+    --color-key-red-hover: #f86c5c;
+    --color-key-gray-background: #eae3dc;
+    --color-key-gray-shadow: hsl(28, 16%, 65%);
+    --color-dark-blue-text: #444b5a;
+    --color-white-text: #ffffff;
+    --border-radius: 10px;
+    --timing-animation: .3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'League Spartan', sans-serif;
+}
+
+h3 {
+    margin: 0;
+}
+
+button {
+    all: unset;
+}
+
+.container {
+    padding: 0 15px;
+    min-height: 100vh;
+    --s: 200px;
+    --c1: #1d1d1d;
+    --c2: #4e4f51;
+    --c3: #3c3c3c;
+
+    background:
+        repeating-conic-gradient(from 30deg, #0000 0 120deg, var(--c3) 0 180deg) calc(.5*var(--s)) calc(.5*var(--s)*0.577),
+        repeating-conic-gradient(from 30deg, var(--c1) 0 60deg, var(--c2) 0 120deg, var(--c3) 0 180deg);
+    background-size: var(--s) calc(var(--s)*0.577);
+}
+
+/* Calculator Styling */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-main-background);
+    opacity: 0.5;
+}
+
+.calc {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 53%);
+    backdrop-filter: blur(3px);
+    color: var(--color-white-text);
+    max-width: 100%;
+}
+
+.calc__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 22rem;
+    margin-bottom: 20px;
+    max-width: 100%;
+}
+
+.calc__header .theme {
+    font-size: 14px;
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.calc__header .theme__toggle .label {
+    display: flex;
+    gap: 10px;
+    padding: 0 4px;
+}
+
+.calc__header .theme__toggle .toggle {
+    width: 100%;
+    height: 14px;
+    background-color: var(--color-screen-background);
+    position: relative;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.calc__header .theme__toggle .toggle:focus-visible {
+    outline: 3px slid #000;
+}
+
+.calc__header .theme__toggle .toggle .dot {
+    background-color: var(--color-key-red-background);
+    position: absolute;
+    height: calc(100% - 4px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    left: 3px;
+    top: 2px;
+    transition: all var(--timing-animation) ease-in-out;
+}
+
+.calc__header .theme__toggle .toggle:hover .dot {
+    background-color: var(--color-key-red-hover)
+}
+
+.calc__result {
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    text-align: right;
+    background-color: var(--color-screen-background);
+    border-radius: 5px;
+}
+
+.calc__numsContent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--color-keypad-background);
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.calc__numsContent .calc__key:focus-visible {
+    outline: 4px solid #000;
+}
+
+.calc__numsContent .calc__key {
+    padding: 10px;
+    text-align: center;
+    background-color: var(--color-key-gray-background);
+    color: #000;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all var(--timing-animation) ease-in-out;
+    box-shadow: 0 4px var(--color-key-gray-shadow);
+}
+
+.calc__numsContent .calc__key:active,
+.calc__numsContent .calc__key.active {
+    transform: translateY(2px);
+    box-shadow: 0 2px var(--color-key-gray-shadow);
+}
+
+.calc__numsContent .calc__key[data-value="Backspace"],
+.calc__numsContent .calc__key[data-value="c"] {
+    color: var(--color-white-text);
+    background-color: var(--color-key-blue-background);
+    box-shadow: 0 4px var(--color-key-blue-shadow);
+}
+
+.calc__numsContent .calc__key[data-value="Backspace"]:active,
+.calc__numsContent .calc__key[data-value="c"]:active,
+.calc__numsContent .calc__key[data-value="Backspace"].active,
+.calc__numsContent .calc__key[data-value="c"].active {
+    box-shadow: 0 2px var(--color-key-blue-shadow);
+}
+
+.calc__numsContent .calc__key[data-value="Backspace"]:hover,
+.calc__numsContent .calc__key[data-value="c"]:hover {
+    background-color: var(--color-key-blue-hover);
+    color: #000;
+}
+
+.calc__numsContent .calc__key[data-value="c"] {
+    grid-column: 1 / 3;
+}
+
+.calc__numsContent .calc__key[data-value="Enter"] {
+    grid-column: 3 / 5;
+    color: var(--white);
+    background-color: var(--color-key-red-background);
+    box-shadow: 0 4px var(--color-key-red-shadow);
+}
+
+.calc__numsContent .calc__key[data-value="Enter"]:active,
+.calc__numsContent .calc__key[data-value="Enter"].active {
+    box-shadow: 0 2px var(--color-key-red-shadow);
+}
+
+.calc__numsContent .calc__key[data-value="Enter"]:hover {
+    background-color: var(--color-key-red-hover);
+}
